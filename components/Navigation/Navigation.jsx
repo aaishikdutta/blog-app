@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { renderNavLink } from "./NavLinks";
+import { renderNavLink } from "./navLinks";
 import MenuIcon from "../../assets/menu.svg";
 import { useState } from "react";
 
