@@ -1,7 +1,16 @@
-import Navigation from "../components/Navigation/Navigation";
-import Footer from "../components/Footer/Footer";
+import AppLayout from "../layouts/AppLayout";
+import StandardLayout from "../layouts/StandardLayout";
 
-export default function Home() {
-  return <><Navigation /><Footer /></>
-  ;
-}
+const Home = () => {
+  return <h1>Hello World</h1>;
+};
+
+Home.getLayout = (page) => {
+  return (
+    <AppLayout>
+      <StandardLayout>{page}</StandardLayout>
+    </AppLayout>
+  );
+};
+
+export default Home;
