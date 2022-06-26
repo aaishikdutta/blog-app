@@ -1,12 +1,8 @@
-import AppLayout from "../layouts/AppLayout";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
-  return (
-    <AppLayout>
-      <Component {...pageProps} />
-    </AppLayout>
-  );
+  const getLayout = Component.getLayout || ((page) => page);
+  return getLayout(<Component {...pageProps} />);
 }
 
 export default MyApp;
