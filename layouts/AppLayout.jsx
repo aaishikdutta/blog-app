@@ -1,6 +1,6 @@
 const AppLayout = ({children}) => {
     return (
-        <div className="flex flex-col min-w-[100vh]">
+        <div className="flex flex-col min-h-[100vh]">
             {children}
         </div>
     )
