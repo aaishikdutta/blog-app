@@ -1,3 +1,20 @@
 @tailwind base;
+
+@layer base {
+  * {
+    @apply m-0 p-0 box-border font-Montserrat;
+  }
+}
+
 @tailwind components;
+
+@layer components {
+  .container {
+    @apply max-w-[1440px] mx-auto;
+  }
+  .link {
+    @apply cursor-pointer no-underline uppercase text-black;
+  }
+}
+
 @tailwind utilities;
