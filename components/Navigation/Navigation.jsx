@@ -11,7 +11,10 @@ const Navigation = () => {
         <div className="flex items-center">
           <Link href="/">
             <a className="font-semibold text-[24px] text-black no-underline">
-              Brand
+              <span>Penned</span>
+              <span className="text-[12px] uppercase tracking-[-1px]">
+                by aaishik
+              </span>
             </a>
           </Link>
         </div>
