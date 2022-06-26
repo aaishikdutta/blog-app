@@ -15,6 +15,15 @@
   .link {
     @apply cursor-pointer no-underline uppercase text-black;
   }
+  .blog-wrapper:nth-child(even) .blog-content {
+    @apply order-2;
+  }
+  .blog-wrapper:nth-child(even) .blog-photo {
+    @apply order-1;
+  }
+  .arrow {
+    @apply ml-[8px] w-[12px];
+  }
 }
 
 @tailwind utilities;
