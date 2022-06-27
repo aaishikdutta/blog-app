@@ -24,6 +24,9 @@
   .arrow {
     @apply ml-[8px] w-[12px];
   }
+  .icon:hover .edit path, .icon:hover .delete path {
+    @apply fill-white;
+  }
 }
 
 @tailwind utilities;
