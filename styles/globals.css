@@ -15,10 +15,10 @@
   .link {
     @apply cursor-pointer no-underline uppercase text-black;
   }
-  .blog-wrapper:nth-child(even) .blog-content {
+  .blog-wrapper:nth-child(odd) .blog-content {
     @apply order-2;
   }
-  .blog-wrapper:nth-child(even) .blog-photo {
+  .blog-wrapper:nth-child(odd) .blog-photo {
     @apply order-1;
   }
   .arrow {

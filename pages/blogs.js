@@ -45,7 +45,7 @@ const mockBlogCards = [
 const Blogs = () => {
     const [isEditing, setIsEditing] = useState(false);
   return (
-    <div className="relative py-[80px] px-[16px] bg-teal-50 md:py-[100px] md:px-[16px]">
+    <div className="relative py-[80px] px-[16px] bg-orange-50 md:py-[100px] md:px-[16px]">
       <div className="container grid gap-[32px] grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 relative">
         <div className="flex items-center absolute top-[-70px] right-0">
           <span className="mr-[16px]">Toggle Editing</span>
@@ -55,7 +55,7 @@ const Blogs = () => {
             checked={isEditing}
             onClick={() => setIsEditing(!isEditing)}
             before=""
-            className="relative cursor-pointer border-none appearance-none bg-white w-[80px] h-[30px] rounded-[20px] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] before:content-[attr(before)] before:absolute before:w-[24px] before:h-[24px] before:rounded-[20px] before:top-[3px] before:left-[3px] before:bg-teal-800 before:transition-all before:duration-[750ms] before:ease-in-out checked:before:left-[52px]"
+            className="relative cursor-pointer border-none appearance-none bg-white w-[80px] h-[30px] rounded-[20px] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] before:content-[attr(before)] before:absolute before:w-[24px] before:h-[24px] before:rounded-[20px] before:top-[3px] before:left-[3px] before:bg-orange-800 before:transition-all before:duration-[750ms] before:ease-in-out checked:before:left-[52px]"
           />
         </div>
         {mockBlogCards.map((card) => {

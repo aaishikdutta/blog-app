@@ -45,7 +45,7 @@ const Home = ({posts, cards}) => {
       {posts.map(post => {
         return <BlogPost title={post.title} blogHTML={post.blogHTML} blogCoverPhoto={post.blogCoverPhoto} />
       })}
-      <div className="relative py-[80px] px-[16px] bg-teal-50 md:py-[100px] md:px-[16px]">
+      <div className="relative py-[80px] px-[16px] bg-orange-50 md:py-[100px] md:px-[16px]">
         <div className="container">
           <h3 className="font-light text-[28px] mb-[32px]">View More Recent Blogs</h3>
           <div className="grid gap-[32px] grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
