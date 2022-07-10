@@ -1,17 +1,43 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Email from '../assets/email.svg';
 import Loader from "../components/Loader/Loader";
 import Modal from "../components/Modal/Modal";
+import { forgotPassword } from "../utils/auth";
 
 const ForgotPassword = () => {
-    const [isModal, setIsModal] = useState(true);
+
+    const formRef = useRef(null);
+    const [isModal, setIsModal] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [modalMessage, setModalMessage] = useState("");
+
+    const forgotPasswordHandler = e => {
+        e.preventDefault();
+        const formData = new FormData(formRef.current);
+        const email = formData.get('email');
+        setIsLoading(true);
+        forgotPassword(email).then(() => {
+            setModalMessage("If your account exists, you will receive a email");
+            setIsLoading(false);
+            setIsModal(true);           
+        }).catch((err) => {
+            setModalMessage(err.message);
+            setIsLoading(false);
+            setIsModal(true);
+        });
+    }
+
+    const modalCloseHandler = () => {
+        setIsModal(false);
+        formRef.current.reset();
+    }
     return (
         <div className="relative">
-            <Loader />
-            {isModal && <Modal modalMessage="If your account exists, you will receive a email" closeHandler={() => setIsModal(false)} />}
+            {isLoading && <Loader />}
+            {isModal && <Modal modalMessage={modalMessage} closeHandler={modalCloseHandler} />}
             <div className="overflow-hidden flex h-screen justify-center self-center my-0 mx-auto w-[90%] md:w-full">
-                <form className="py-0 px-[10px] relative flex flex-col justify-center items-center flex-1 md:py-0 md:px-[50px]">
+                <form ref={formRef} className="py-0 px-[10px] relative flex flex-col justify-center items-center flex-1 md:py-0 md:px-[50px]">
                     <p className="mb-[32px]">
                         Back to &nbsp;
                         <Link href="/login">
@@ -26,7 +52,7 @@ const ForgotPassword = () => {
                             <Email className="w-[12px] absolute left-[6px]" />
                         </div>
                     </div>
-                    <button>Reset</button>
+                    <button onClick={forgotPasswordHandler}>Reset</button>
                     <div className="hidden absolute bg-white rotate-[3deg] w-[60px] right-[-30px] h-[101%] md:block"></div>
                 </form>
                 <div className="hidden flex-[2] bg-cover bg-[url('https://images.unsplash.com/photo-1504384171965-be2509a826af?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')] w-full h-full md:block"></div>
