@@ -1,10 +1,39 @@
 import Link from "next/link";
 import { renderNavLink } from "./navLinks";
 import MenuIcon from "../../assets/menu.svg";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { auth } from "../../firebase/init";
+import AuthContext from "../../context/authContext";
+import { onAuthStateChanged } from "firebase/auth";
+import { getCurrentUser } from "../../utils/auth";
 
 const Navigation = () => {
   const [isSideBar, setIsSideBar] = useState(false);
+  const { authState, authDispatch } = useContext(AuthContext);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, async (user) => {
+      authDispatch({
+        type: "UPDATE_USER",
+        payload: user,
+      });
+      if (user) {
+        // User is signed in, get the userdata
+        const userSnapshot = await getCurrentUser(user);
+        //update the store
+        authDispatch({
+          type: "GET_CURRENT_USER",
+          payload: {
+            id: userSnapshot.data().id,
+            email: userSnapshot.data().email,
+            firstName: userSnapshot.data().firstName,
+            lastName: userSnapshot.data().lastName,
+            username: userSnapshot.data().username,
+          },
+        });
+      }
+    });
+  }, []);
   return (
     <header className="bg-white px-[25px] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] z-[99]">
       <nav className="container flex py-[25px]">
