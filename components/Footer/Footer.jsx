@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { renderFooterLinks } from "./footerLinks";
-import { renderSocialLinks } from "./SocialLinks";
 import Signature from "../../assets/signature.png";
 import Image from "next/image";
+import NavLink from "../helpers/NavLink";
+import SocialLinks from "../helpers/SocialLinks";
 
 const Footer = () => {
+  const footerLinkStyle = 'link text-[16px] font-medium text-white no-underline';
   return (
     <footer className="mt-auto pt-[75px] pb-[50px] px-[25px] bg-[#303030]">
       <div className="container flex flex-col gap-[32px] md:flex-row md:gap-0">
@@ -19,12 +20,31 @@ const Footer = () => {
               </a>
             </Link>
             <ul className="gap-[16px] list-none flex mt-auto">
-              {renderSocialLinks()}
+              <SocialLinks />
             </ul>
           </div>
           <div className="gap-[32px] flex flex-1 md:gap-0">
             <ul className="gap-[16px] list-none flex h-full justify-center flex-row flex-wrap md:flex-col">
-              {renderFooterLinks()}
+            <NavLink
+              url="/"
+              linkText="Home"
+              className={footerLinkStyle}
+            />
+            <NavLink
+              url="/blogs"
+              linkText="Blogs"
+              className={footerLinkStyle}
+            />
+            <NavLink
+              url="/createPost"
+              linkText="Create Post"
+              className={footerLinkStyle}
+            />
+            <NavLink
+              url="/login"
+              linkText="Login/Register"
+              className={footerLinkStyle}
+            />
             </ul>
           </div>
         </div>

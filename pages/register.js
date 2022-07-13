@@ -5,9 +5,11 @@ import {
   FormInputs,
   FormTitle,
   GoToForm,
-} from "../components/AuthForms/FormHelpers";
-import { registerInputs } from "../components/AuthForms/InputFields";
+} from "../components/helpers/FormHelpers";
 import { setRegisteredUser, signup } from "../utils/auth";
+import User from '../assets/user.svg';
+import Email from '../assets/email.svg';
+import Password from '../assets/password.svg';
 
 const Register = () => {
   const router = useRouter();
@@ -47,6 +49,39 @@ const Register = () => {
       setErrorMessage("Please fill out all the fields!");
     }
   };
+
+  const registerInputs = [
+    {
+      type: "text",
+      placeholder: "First Name",
+      name: "firstName",
+      icon: User,
+    },
+    {
+      type: "text",
+      placeholder: "Last Name",
+      name: "lastName",
+      icon: User,
+    },
+    {
+      type: "text",
+      placeholder: "Username",
+      name: "username",
+      icon: User,
+    },
+    {
+      type: "text",
+      placeholder: "Email",
+      name: "email",
+      icon: Email,
+    },
+    {
+      type: "password",
+      placeholder: "Password",
+      name: "password",
+      icon: Password,
+    },
+  ];
 
   return (
     <FormContainer

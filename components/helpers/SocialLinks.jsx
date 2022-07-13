@@ -3,26 +3,25 @@ import Youtube from "../../assets/youtube.svg";
 import Linkedin from "../../assets/linkedin.svg";
 import Instagram from "../../assets/instagram.svg";
 
-const socialLinks = [
-  {
-    url: "/",
-    svgComp: Twitter,
-  },
-  {
-    url: "/",
-    svgComp: Youtube,
-  },
-  {
-    url: "/",
-    svgComp: Linkedin,
-  },
-  {
-    url: "/",
-    svgComp: Instagram,
-  },
-];
-
-export const renderSocialLinks = () => {
+const SocialLinks = () => {
+  const socialLinks = [
+    {
+      url: "/",
+      svgComp: Twitter,
+    },
+    {
+      url: "/",
+      svgComp: Youtube,
+    },
+    {
+      url: "/",
+      svgComp: Linkedin,
+    },
+    {
+      url: "/",
+      svgComp: Instagram,
+    },
+  ];
   return socialLinks.map((social) => {
     const { url, svgComp: SvgComp } = social;
     return (
@@ -34,3 +33,5 @@ export const renderSocialLinks = () => {
     );
   });
 };
+
+export default SocialLinks;
