@@ -2,6 +2,7 @@ import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db } from "../firebase/init";
@@ -33,3 +34,7 @@ export const getCurrentUser = (user) => {
   const docRef = doc(db, "users", uid);
   return getDoc(docRef);
 };
+
+export const signout = () => {
+  return signOut(auth);
+}
