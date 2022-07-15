@@ -30,7 +30,7 @@ const ProfileMenu = ({
     <div
       ref={profileRef}
       onClick={profileMenuToggleHandler}
-      className="relative cursor-pointer flex items-center justify-center w-[40px] h-[40px] rounded-[50%] text-white bg-[#303030]"
+      className="relative cursor-pointer flex items-center justify-center w-[40px] h-[40px] rounded-[50%] text-white bg-[#303030] mr-[40px] md:mr-0"
     >
       <span className="pointer-events-none">{profileInitials}</span>
       {isProfileMenu && (
