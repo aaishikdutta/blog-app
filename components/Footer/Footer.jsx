@@ -3,8 +3,11 @@ import Signature from "../../assets/signature.png";
 import Image from "next/image";
 import NavLinks from "../helpers/NavLink";
 import SocialLinks from "../helpers/SocialLinks";
+import { useContext } from "react";
+import AuthContext from "../../context/authContext";
 
 const Footer = () => {
+  const {authState} = useContext(AuthContext);
   const footerLinkStyle = 'link text-[16px] font-medium text-white no-underline';
   return (
     <footer className="mt-auto pt-[75px] pb-[50px] px-[25px] bg-[#303030]">
@@ -25,7 +28,7 @@ const Footer = () => {
           </div>
           <div className="gap-[32px] flex flex-1 md:gap-0">
             <ul className="gap-[16px] list-none flex h-full justify-center flex-row flex-wrap md:flex-col">
-            <NavLinks styleClass={footerLinkStyle} />
+            <NavLinks styleClass={footerLinkStyle} isAuthenticated={authState.user} />
             </ul>
           </div>
         </div>

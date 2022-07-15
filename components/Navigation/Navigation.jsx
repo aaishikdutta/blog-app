@@ -62,8 +62,8 @@ const Navigation = () => {
           </Link>
         </div>
         {!isNavLinkLoading && (
-          <div className="relative hidden md:flex flex-1 items-center justify-end">
-            <ul className="mr-[32px]">
+          <div className="relative flex flex-1 items-center justify-end">
+            <ul className="mr-[32px] hidden md:block">
               <NavLinks styleClass={headerNavLinkDesktopStyle} isAuthenticated={authState.user} />
             </ul>
             {authState.user && (
@@ -86,7 +86,7 @@ const Navigation = () => {
       />
       {isSideBar && (
         <ul className="p-[20px] w-[70%] max-w-[250px] flex flex-col fixed h-full bg-[#303030] top-0 left-0 md:hidden">
-          <NavLinks styleClass={headerNavLinkMobileStyle} />
+          <NavLinks styleClass={headerNavLinkMobileStyle} isAuthenticated={authState.user} />
         </ul>
       )}
     </header>
