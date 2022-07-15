@@ -5,11 +5,13 @@ import { auth } from "../../firebase/init";
 import AuthContext from "../../context/authContext";
 import { onAuthStateChanged } from "firebase/auth";
 import { getCurrentUser } from "../../utils/auth";
-import NavLink from "../helpers/NavLink";
+import NavLinks from "../helpers/NavLink";
 import classNames from "classnames";
+import ProfileMenu from "../helpers/ProfileMenu";
 
 const Navigation = () => {
   const [isSideBar, setIsSideBar] = useState(false);
+  const [isNavLinkLoading, setIsNavLinkLoading] = useState(true);
   const { authState, authDispatch } = useContext(AuthContext);
 
   useEffect(() => {
@@ -33,6 +35,7 @@ const Navigation = () => {
           },
         });
       }
+      setIsNavLinkLoading(false);
     });
   }, []);
   const headerNavLinkStyle =
@@ -58,30 +61,22 @@ const Navigation = () => {
             </a>
           </Link>
         </div>
-        <div className="relative hidden md:flex flex-1 items-center justify-end">
-          <ul className="mr-[32px]">
-            <NavLink
-              url="/"
-              linkText="Home"
-              className={headerNavLinkDesktopStyle}
-            />
-            <NavLink
-              url="/blogs"
-              linkText="Blogs"
-              className={headerNavLinkDesktopStyle}
-            />
-            <NavLink
-              url="/createPost"
-              linkText="Create Post"
-              className={headerNavLinkDesktopStyle}
-            />
-            <NavLink
-              url="/login"
-              linkText="Login/Register"
-              className={headerNavLinkDesktopStyle}
-            />
-          </ul>
-        </div>
+        {!isNavLinkLoading && (
+          <div className="relative hidden md:flex flex-1 items-center justify-end">
+            <ul className="mr-[32px]">
+              <NavLinks styleClass={headerNavLinkDesktopStyle} isAuthenticated={authState.user} />
+            </ul>
+            {authState.user && (
+              <ProfileMenu
+                profileInitials={authState.profileInitials}
+                profileFirstName={authState.profileFirstName}
+                profileLastName={authState.profileLastName}
+                profileUsername={authState.profileUsername}
+                profileEmail={authState.profileEmail}
+              />
+            )}
+          </div>
+        )}
       </nav>
       <MenuIcon
         className="cursor-pointer absolute top-[32px] right-[25px] h-[25px] w-auto md:hidden"
@@ -91,26 +86,7 @@ const Navigation = () => {
       />
       {isSideBar && (
         <ul className="p-[20px] w-[70%] max-w-[250px] flex flex-col fixed h-full bg-[#303030] top-0 left-0 md:hidden">
-          <NavLink
-            url="/"
-            linkText="Home"
-            className={headerNavLinkMobileStyle}
-          />
-          <NavLink
-            url="/blogs"
-            linkText="Blogs"
-            className={headerNavLinkMobileStyle}
-          />
-          <NavLink
-            url="/createPost"
-            linkText="Create Post"
-            className={headerNavLinkMobileStyle}
-          />
-          <NavLink
-            url="/login"
-            linkText="Login/Register"
-            className={headerNavLinkMobileStyle}
-          />
+          <NavLinks styleClass={headerNavLinkMobileStyle} />
         </ul>
       )}
     </header>
