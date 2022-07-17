@@ -7,4 +7,5 @@ export default {
   profileUsername: null,
   profileId: null,
   profileInitials: null,
+  isAuthLoading: true,
 };
