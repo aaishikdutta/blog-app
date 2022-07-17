@@ -14,7 +14,7 @@ const authReducer = (state, action) => {
         newState.profileFirstName.match(/(\b\S)?/g).join("") +
         newState.profileLastName.match(/(\b\S)?/g).join("");
       newState.profileId = userId;
-      newState.profileAdmin = role === 'admin' ? true : false;
+      newState.profileAdmin = role;
       console.log(newState);
       return newState;
     }

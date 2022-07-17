@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { auth } from "../../firebase/init";
 import AuthContext from "../../context/authContext";
 import { onAuthStateChanged } from "firebase/auth";
-import { getCurrentUser } from "../../utils/auth";
+import { getAdminData, getCurrentUser } from "../../utils/auth";
 import NavLinks from "../helpers/NavLink";
 import classNames from "classnames";
 import ProfileMenu from "../helpers/ProfileMenu";
@@ -16,13 +16,11 @@ const Navigation = () => {
 
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
-      authDispatch({
-        type: "UPDATE_USER",
-        payload: user,
-      });
       if (user) {
         // User is signed in, get the userdata
         const userSnapshot = await getCurrentUser(user);
+        //get the admin data
+        const idTokenResult = await getAdminData(user);
         //update the store
         authDispatch({
           type: "GET_CURRENT_USER",
@@ -32,11 +30,15 @@ const Navigation = () => {
             firstName: userSnapshot.data().firstName,
             lastName: userSnapshot.data().lastName,
             username: userSnapshot.data().username,
-            role: userSnapshot.data().role,
+            role: idTokenResult.claims.admin,
             userId: user.uid,
           },
         });
       }
+      authDispatch({
+        type: "UPDATE_USER",
+        payload: user,
+      });
       setIsNavLinkLoading(false);
     });
   }, []);

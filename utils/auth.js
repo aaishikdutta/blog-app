@@ -18,7 +18,6 @@ export const setRegisteredUser = (uid, firstName, lastName, username, email) => 
     lastName,
     username,
     email,
-    role: 'user',
   });
 }
 
@@ -48,4 +47,8 @@ export const updateUserData = (firstName, lastName, username, user) => {
     lastName: lastName,
     username: username,
   })
+}
+
+export const getAdminData = (user) => {
+  return user.getIdTokenResult();
 }
