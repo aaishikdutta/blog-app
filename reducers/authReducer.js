@@ -16,6 +16,7 @@ const authReducer = (state, action) => {
         
         case 'UPDATE_USER':
             newState = {...state};
+            newState.isAuthLoading = false;
             newState.user = action.payload;
             console.log(newState);
             return newState;

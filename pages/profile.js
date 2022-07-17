@@ -2,11 +2,27 @@ import Admin from "../assets/admin.svg";
 import AppLayout from "../layouts/AppLayout";
 import StandardLayout from "../layouts/StandardLayout";
 import Loader from "../components/Loader/Loader";
+import { useContext, useEffect, useState } from "react";
+import AuthContext from "../context/authContext";
+import { useRouter } from "next/router";
 
 const Profile = () => {
+  const {authState} = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
+  useEffect(() => {
+    if(!authState.isAuthLoading){
+      if(authState.user){
+      }else{
+        router.push('/login');
+      }
+      setIsLoading(false);
+    }
+  },[authState]);
   return (
     <div className="profile">
-      <div className="container max-w-[1000px] py-[60px] px-[25px]">
+      {isLoading && <Loader />}
+      {!isLoading && <div className="container max-w-[1000px] py-[60px] px-[25px]">
         <h2 className="text-center mb-[16px] font-light text-[32px]">
           Account Settings
         </h2>
@@ -64,7 +80,7 @@ const Profile = () => {
           </div>
           <button className="self-center">Save Changes</button>
         </div>
-      </div>
+      </div>}
     </div>
   );
 };
