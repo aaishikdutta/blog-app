@@ -32,6 +32,7 @@ const Navigation = () => {
             firstName: userSnapshot.data().firstName,
             lastName: userSnapshot.data().lastName,
             username: userSnapshot.data().username,
+            userId: user.uid,
           },
         });
       }
