@@ -28,7 +28,7 @@ const Footer = () => {
           </div>
           <div className="gap-[32px] flex flex-1 md:gap-0">
             <ul className="gap-[16px] list-none flex h-full justify-center flex-row flex-wrap md:flex-col">
-            <NavLinks styleClass={footerLinkStyle} isAuthenticated={authState.user} />
+            <NavLinks styleClass={footerLinkStyle} isAuthenticated={authState.user} isAdmin={authState.profileAdmin} />
             </ul>
           </div>
         </div>

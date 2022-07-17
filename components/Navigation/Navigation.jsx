@@ -32,6 +32,7 @@ const Navigation = () => {
             firstName: userSnapshot.data().firstName,
             lastName: userSnapshot.data().lastName,
             username: userSnapshot.data().username,
+            role: userSnapshot.data().role,
             userId: user.uid,
           },
         });
@@ -65,7 +66,7 @@ const Navigation = () => {
         {!isNavLinkLoading && (
           <div className="relative flex flex-1 items-center justify-end">
             <ul className="mr-[32px] hidden md:block">
-              <NavLinks styleClass={headerNavLinkDesktopStyle} isAuthenticated={authState.user} />
+              <NavLinks styleClass={headerNavLinkDesktopStyle} isAuthenticated={authState.user} isAdmin={authState.profileAdmin} />
             </ul>
             {authState.user && (
               <ProfileMenu
@@ -74,6 +75,7 @@ const Navigation = () => {
                 profileLastName={authState.profileLastName}
                 profileUsername={authState.profileUsername}
                 profileEmail={authState.profileEmail}
+                isAdmin={authState.profileAdmin}
               />
             )}
           </div>
@@ -87,7 +89,7 @@ const Navigation = () => {
       />
       {isSideBar && (
         <ul className="p-[20px] w-[70%] max-w-[250px] flex flex-col fixed h-full bg-[#303030] top-0 left-0 md:hidden">
-          <NavLinks styleClass={headerNavLinkMobileStyle} isAuthenticated={authState.user} />
+          <NavLinks styleClass={headerNavLinkMobileStyle} isAuthenticated={authState.user} isAdmin={authState.profileAdmin} />
         </ul>
       )}
     </header>

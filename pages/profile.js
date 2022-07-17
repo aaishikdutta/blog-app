@@ -55,10 +55,10 @@ const Profile = () => {
             <div className="w-[80px] h-[80px] text-[32px] bg-[#303030] text-white flex self-center items-center justify-center rounded-[50%]">
               {authState.profileInitials}
             </div>
-            <div className="flex self-center text-white text-[14px] py-[8px] px-[24px] rounded-[8px] bg-[#303030] my-[16px] mx-0 text-center capitalize">
+            {authState.profileAdmin && <div className="flex self-center text-white text-[14px] py-[8px] px-[24px] rounded-[8px] bg-[#303030] my-[16px] mx-0 text-center capitalize">
               <Admin class="w-[14px] h-auto mr-[8px]" />
               <span>admin</span>
-            </div>
+            </div>}
 
             <div className="my-[16px] mx-0">
               <label htmlFor="firstName" className="text-[14px] block pb-[6px]">
