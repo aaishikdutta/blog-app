@@ -2,7 +2,7 @@ const authReducer = (state, action) => {
   switch (action.type) {
     case "GET_CURRENT_USER": {
       const newState = { ...state };
-      const { id, email, firstName, lastName, username, userId } =
+      const { id, email, firstName, lastName, username, userId, role } =
         action.payload;
 
       newState.profileId = id;
@@ -14,6 +14,7 @@ const authReducer = (state, action) => {
         newState.profileFirstName.match(/(\b\S)?/g).join("") +
         newState.profileLastName.match(/(\b\S)?/g).join("");
       newState.profileId = userId;
+      newState.profileAdmin = role === 'admin' ? true : false;
       console.log(newState);
       return newState;
     }

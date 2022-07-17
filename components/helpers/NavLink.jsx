@@ -8,12 +8,12 @@ const NavLink = ({ url, linkText, className }) => {
   );
 };
 
-const NavLinks = ({ styleClass, isAuthenticated }) => {
+const NavLinks = ({ styleClass, isAuthenticated, isAdmin }) => {
   return (
     <>
       <NavLink url="/" linkText="Home" className={styleClass} />
       <NavLink url="/blogs" linkText="Blogs" className={styleClass} />
-      {isAuthenticated && (
+      {isAuthenticated && isAdmin && (
         <NavLink
           url="/createPost"
           linkText="Create Post"

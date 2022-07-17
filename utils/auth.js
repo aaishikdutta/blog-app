@@ -17,7 +17,8 @@ export const setRegisteredUser = (uid, firstName, lastName, username, email) => 
     firstName,
     lastName,
     username,
-    email
+    email,
+    role: 'user',
   });
 }
 
