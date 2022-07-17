@@ -49,7 +49,7 @@ const ProfileMenu = ({
           </div>
           <div className="p-[15px]">
             <div className="no-underline text-white flex items-center mb-[12px]">
-              <Link href="/">
+              <Link href="/profile">
                 <a className="no-underline text-white flex items-center mb-[12px]">
                   <User className="w-[18px] h-auto" />
                   <p className="text-[14px] ml-[12px]">Profile</p>
