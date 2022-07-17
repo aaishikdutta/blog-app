@@ -4,7 +4,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { auth, db } from "../firebase/init";
 
 export const signup = (email, password) => {
@@ -37,4 +37,14 @@ export const getCurrentUser = (user) => {
 
 export const signout = () => {
   return signOut(auth);
+}
+
+export const updateUserData = (firstName, lastName, username, user) => {
+  const uid = user.uid;
+  const userRef = doc(db, "users", uid);
+  return updateDoc(userRef, {
+    firstName: firstName,
+    lastName: lastName,
+    username: username,
+  })
 }
