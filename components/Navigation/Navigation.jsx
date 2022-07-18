@@ -1,10 +1,7 @@
 import Link from "next/link";
 import MenuIcon from "../../assets/menu.svg";
 import { useContext, useEffect, useState } from "react";
-import { auth } from "../../firebase/init";
 import AuthContext from "../../context/authContext";
-import { onAuthStateChanged } from "firebase/auth";
-import { getAdminData, getCurrentUser } from "../../utils/auth";
 import NavLinks from "../helpers/NavLink";
 import classNames from "classnames";
 import ProfileMenu from "../helpers/ProfileMenu";
@@ -12,36 +9,12 @@ import ProfileMenu from "../helpers/ProfileMenu";
 const Navigation = () => {
   const [isSideBar, setIsSideBar] = useState(false);
   const [isNavLinkLoading, setIsNavLinkLoading] = useState(true);
-  const { authState, authDispatch } = useContext(AuthContext);
+  const { authState } = useContext(AuthContext);
 
   useEffect(() => {
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        // User is signed in, get the userdata
-        const userSnapshot = await getCurrentUser(user);
-        //get the admin data
-        const idTokenResult = await getAdminData(user);
-        //update the store
-        authDispatch({
-          type: "GET_CURRENT_USER",
-          payload: {
-            id: userSnapshot.data().id,
-            email: userSnapshot.data().email,
-            firstName: userSnapshot.data().firstName,
-            lastName: userSnapshot.data().lastName,
-            username: userSnapshot.data().username,
-            role: idTokenResult.claims.admin,
-            userId: user.uid,
-          },
-        });
-      }
-      authDispatch({
-        type: "UPDATE_USER",
-        payload: user,
-      });
-      setIsNavLinkLoading(false);
-    });
-  }, []);
+    !authState.isAuthLoading && setIsNavLinkLoading(false);
+  },[authState]);
+
   const headerNavLinkStyle =
     "link font-medium py-[8px] transition-colors duration-300 ease-in-out hover:text-orange-500";
   const headerNavLinkDesktopStyle = classNames([
@@ -68,7 +41,11 @@ const Navigation = () => {
         {!isNavLinkLoading && (
           <div className="relative flex flex-1 items-center justify-end">
             <ul className="mr-[32px] hidden md:block">
-              <NavLinks styleClass={headerNavLinkDesktopStyle} isAuthenticated={authState.user} isAdmin={authState.profileAdmin} />
+              <NavLinks
+                styleClass={headerNavLinkDesktopStyle}
+                isAuthenticated={authState.user}
+                isAdmin={authState.profileAdmin}
+              />
             </ul>
             {authState.user && (
               <ProfileMenu
@@ -91,7 +68,11 @@ const Navigation = () => {
       />
       {isSideBar && (
         <ul className="p-[20px] w-[70%] max-w-[250px] flex flex-col fixed h-full bg-[#303030] top-0 left-0 md:hidden">
-          <NavLinks styleClass={headerNavLinkMobileStyle} isAuthenticated={authState.user} isAdmin={authState.profileAdmin} />
+          <NavLinks
+            styleClass={headerNavLinkMobileStyle}
+            isAuthenticated={authState.user}
+            isAdmin={authState.profileAdmin}
+          />
         </ul>
       )}
     </header>

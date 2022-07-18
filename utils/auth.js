@@ -1,11 +1,17 @@
 import {
   createUserWithEmailAndPassword,
+  getIdTokenResult,
+  onAuthStateChanged,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { auth, db } from "../firebase/init";
+
+export const authStateHandler = (authStateCallBack) => {
+  onAuthStateChanged(auth, authStateCallBack);
+}
 
 export const signup = (email, password) => {
   return createUserWithEmailAndPassword(auth, email, password);
@@ -49,6 +55,6 @@ export const updateUserData = (firstName, lastName, username, user) => {
   })
 }
 
-export const getAdminData = (user) => {
-  return user.getIdTokenResult();
+export const getTokenData = (user) => {
+  return getIdTokenResult(user);
 }

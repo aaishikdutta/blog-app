@@ -58,7 +58,7 @@ const ProfileMenu = ({
               </Link>
             </div>
             {isAdmin && <div className="no-underline text-white flex items-center mb-[12px]">
-              <Link href="/">
+              <Link href="/admin">
                 <a className="no-underline text-white flex items-center mb-[12px]">
                   <Admin className="w-[18px] h-auto" />
                   <p className="text-[14px] ml-[12px]">Admin</p>

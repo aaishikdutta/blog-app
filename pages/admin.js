@@ -14,7 +14,6 @@ const Admin = () => {
 
   useEffect(() => {
     if (!authState.isAuthLoading) {
-        console.log(authState.profileAdmin, authState.isAuthLoading);
       if (!authState.user) {
         router.push("/login");
       }else if(authState.user && !authState.profileAdmin){
