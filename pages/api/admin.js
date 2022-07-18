@@ -21,7 +21,9 @@ const handler = async (req, res) => {
       });
     }
     const { email } = JSON.parse(req.body);
+    //get user object by email
     const user = await adminAuth.getUserByEmail(email);
+    //set a custom claim to the token marking user as admin
     await adminAuth.setCustomUserClaims(user.uid, {
       admin: true,
     });
@@ -30,7 +32,7 @@ const handler = async (req, res) => {
     });
   } catch (err) {
     res.status(405).json({
-      message: err.message,
+      message: 'Unable to perform action. Something went wrong!',
     });
   }
 };

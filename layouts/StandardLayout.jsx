@@ -10,7 +10,7 @@ const StandardLayout = ({ children }) => {
     if (user) {
       // User is signed in, get the userdata
       const userSnapshot = await getCurrentUser(user);
-      //get the admin data
+      //get the decode user token
       const idTokenResult = await getTokenData(user);
       //update the store
       authDispatch({
