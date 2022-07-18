@@ -1,13 +1,21 @@
 import { initializeApp, applicationDefault, getApp } from "firebase-admin/app";
 import { getAuth } from "firebase-admin/auth";
 
-if (!getApp("admin")) {
-  initializeApp(
+
+let auth;
+
+try{
+  auth = getAuth(getApp("admin"));
+}catch(err){
+    initializeApp(
     {
       credential: applicationDefault(),
     },
     "admin"
   );
+  auth = getAuth(getApp('admin'));
 }
 
-export const adminAuth = getAuth(getApp("admin"));
+export const adminAuth = auth;
+
+

@@ -4,6 +4,7 @@ import StandardLayout from "../layouts/StandardLayout";
 import Loader from "../components/Loader/Loader";
 import { useRouter } from "next/router";
 import AuthContext from "../context/authContext";
+import { getIdToken } from "firebase/auth";
 
 const Admin = () => {
   const { authState } = useContext(AuthContext);
@@ -16,26 +17,29 @@ const Admin = () => {
     if (!authState.isAuthLoading) {
       if (!authState.user) {
         router.push("/login");
-      }else if(authState.user && !authState.profileAdmin){
+      } else if (authState.user && !authState.profileAdmin) {
         router.push("/");
-      }else{
+      } else {
         setIsLoading(false);
       }
     }
   }, [authState]);
 
-  const emailSubmitHandler = () => {
-    fetch("/api/admin", {
-      method: "POST",
-      body: JSON.stringify({
-        email: email,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => setResponseMsg(data.message))
-      .catch((err) => {
-        setResponseMsg(err.message);
+  const emailSubmitHandler = async () => {
+    try {
+      const token = await getIdToken(authState.user);
+      const response = await fetch("/api/admin", {
+        method: "POST",
+        body: JSON.stringify({
+          email: email,
+        }),
+        headers: { Authentication: `Bearer ${token}` },
       });
+      const data = await response.json();
+      setResponseMsg(data.message);
+    } catch (err) {
+      setResponseMsg(err.message);
+    }
   };
   return (
     <div className="admin">

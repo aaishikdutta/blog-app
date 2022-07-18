@@ -1,5 +1,6 @@
 import {
   createUserWithEmailAndPassword,
+  getIdToken,
   getIdTokenResult,
   onAuthStateChanged,
   sendPasswordResetEmail,
@@ -57,4 +58,8 @@ export const updateUserData = (firstName, lastName, username, user) => {
 
 export const getTokenData = (user) => {
   return getIdTokenResult(user);
+}
+
+export const getToken = (user) => {
+  return getIdToken(user);
 }
