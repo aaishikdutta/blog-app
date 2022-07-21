@@ -28,12 +28,27 @@
     @apply fill-white;
   }
 
-  button {
+  button, .router-button {
     @apply transition-all duration-500 ease-in-out cursor-pointer mt-[24px] py-[12px] px-[24px] bg-[#303030] text-white rounded-[20px] border-none uppercase focus:outline-none hover:bg-[rgba(48,48,48,0.7)];
   }
 
   .error {
     @apply text-center text-[12px] text-red-600;
+  }
+
+  .textEditor .ql-container {
+    @apply flex flex-col h-full overflow-scroll;
+  }
+
+  .textEditor .ql-editor {
+    @apply p-[20px_16px_30px];
+  }
+  .textEditor button {
+    @apply mt-0;
+  }
+
+  .button-inactive {
+    @apply !pointer-events-none !cursor-none !bg-[rgba(128,128,128,0.5)];
   }
 }
 
