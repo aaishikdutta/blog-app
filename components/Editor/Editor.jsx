@@ -14,7 +14,7 @@ const Editor = () => {
       blotFormatter: {},
     },
   });
-  const { postDispatch } = useContext(PostContext);
+  const { postState, postDispatch } = useContext(PostContext);
 
   if (Quill && !quill) {
     const BlotFormatter = require("quill-blot-formatter").default;
@@ -23,6 +23,7 @@ const Editor = () => {
 
   useEffect(() => {
     if (quill) {
+      quill.clipboard.dangerouslyPasteHTML(postState.blogHTML);
       quill.getModule("toolbar").addHandler("image", selectLocalImage);
       quill.on("text-change", () => {
         postDispatch({
