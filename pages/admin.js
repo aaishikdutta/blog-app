@@ -42,14 +42,14 @@ const Admin = () => {
     }
   };
   return (
-    <div className="admin">
+    <div className="default-background flex-grow text-white">
       {isLoading && <Loader />}
       {!isLoading && (
         <div className="container max-w-[1000px] py-[60px] px-[25px]">
           <h2 className="text-center mb-[16px] font-light text-[32px]">
             Admin
           </h2>
-          <div className="rounded-[8px] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] p-[32px] bg-[#f1f1f1] flex flex-col max-w-[600px] my-[32px] mx-auto">
+          <div className="rounded-[8px] default-shadow p-[32px] bg-[#303030] flex flex-col max-w-[600px] my-[32px] mx-auto">
             <h2 className="text-center mb-[16px] font-light text-[32px]">
               Add Admin
             </h2>
@@ -58,7 +58,7 @@ const Admin = () => {
                 placeholder="Enter user email to make them an admin"
                 type="text"
                 id="addAdmin"
-                className="w-full border-none bg-[#f2f7f6] p-[8px] h-[50px] focus:outline-none"
+                className="w-full border-b-2 border-b-white bg-transparent p-[8px] h-[50px] focus:outline-none"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />

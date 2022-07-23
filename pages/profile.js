@@ -44,18 +44,18 @@ const Profile = () => {
   };
 
   return (
-    <div className="profile">
+    <div className="default-background flex-grow text-white">
       {isLoading && <Loader />}
       {!isLoading && (
         <div className="container max-w-[1000px] py-[60px] px-[25px]">
           <h2 className="text-center mb-[16px] font-light text-[32px]">
             Account Settings
           </h2>
-          <div className="rounded-[8px] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] p-[32px] bg-[#f1f1f1] flex flex-col max-w-[600px] my-[32px] mx-auto">
-            <div className="w-[80px] h-[80px] text-[32px] bg-[#303030] text-white flex self-center items-center justify-center rounded-[50%]">
+          <div className="rounded-[8px] default-shadow p-[32px] bg-[#303030] flex flex-col max-w-[600px] my-[32px] mx-auto default-shadow">
+            <div className="w-[80px] h-[80px] text-[32px] bg-white text-[#303030] flex self-center items-center justify-center rounded-[50%]">
               {authState.profileInitials}
             </div>
-            {authState.profileAdmin && <div className="flex self-center text-white text-[14px] py-[8px] px-[24px] rounded-[8px] bg-[#303030] my-[16px] mx-0 text-center capitalize">
+            {authState.profileAdmin && <div className="flex self-center text-white text-[14px] py-[8px] px-[24px] rounded-[8px] default-background my-[16px] mx-0 text-center capitalize">
               <Admin class="w-[14px] h-auto mr-[8px]" />
               <span>admin</span>
             </div>}
@@ -70,7 +70,7 @@ const Profile = () => {
                 name="firstName"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                className="w-full border-none bg-[#f2f7f6] p-[8px] h-[50px] md:focus:outline-none"
+                className="w-full border-b-2 border-b-white bg-transparent p-[8px] h-[50px] md:focus:outline-none"
               />
             </div>
             <div className="my-[16px] mx-0">
@@ -83,7 +83,7 @@ const Profile = () => {
                 name="lastName"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                className="w-full border-none bg-[#f2f7f6] p-[8px] h-[50px] md:focus:outline-none"
+                className="w-full border-b-2 border-b-white bg-transparent p-[8px] h-[50px] md:focus:outline-none"
               />
             </div>
             <div className="my-[16px] mx-0">
@@ -96,7 +96,7 @@ const Profile = () => {
                 name="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="w-full border-none bg-[#f2f7f6] p-[8px] h-[50px] md:focus:outline-none"
+                className="w-full border-b-2 border-b-white bg-transparent p-[8px] h-[50px] md:focus:outline-none"
               />
             </div>
             <div className="my-[16px] mx-0">
@@ -110,7 +110,7 @@ const Profile = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 readOnly
-                className="w-full border-none bg-[#f2f7f6] p-[8px] h-[50px] md:focus:outline-none"
+                className="w-full border-b-2 border-b-white bg-transparent p-[8px] h-[50px] md:focus:outline-none"
               />
             </div>
             <button className="self-center" onClick={updateUserSettings}>

@@ -48,9 +48,9 @@ const CreatePost = () => {
   }
 
   const buttonStyle =
-    "self-center text-[14px] cursor-pointer rounded-[20px] py-[12px] px-[24px] text-[#ffffff] bg-[#303030] no-underline hover:bg-[rgba(48,48,48,0.7)] transition-all duration-500 ease-in-out uppercase";
+    "self-center text-[14px] cursor-pointer rounded-[20px] py-[12px] px-[24px] text-black bg-white no-underline uppercase";
   return (
-    <div className="relative h-full">
+    <div className="relative h-full default-background text-white flex-grow">
       <div className="container relative h-full p-[10px_25px_60px]">
         <div className={`${error ? 'opacity-1' : 'opacity-0'} w-full p-[12px] rounded-[8px] text-white mb-[10px] bg-[#303030] transition-all duration-500ms ease`}>
           <p className="text-[14px]">
@@ -62,7 +62,7 @@ const CreatePost = () => {
             type="text"
             placeholder="Enter Blog Title"
             name="blogTitle"
-            className="transition-all duration-500 ease-in-out py-[10px] px-[4px] border-b-[1px] border-solid border-b-[#303030] focus:outline-none shadow-[0_1px_0_0_#303030] min-w-[300px]"
+            className="transition-all duration-500 ease-in-out py-[10px] px-[4px] border-b-[1px] border-b-white bg-transparent focus:outline-none shadow-[0_1px_0_0_#303030] min-w-[300px]"
             value={postState.blogTitle}
             onChange={titleUpdateHandler}
           />

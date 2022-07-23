@@ -15,7 +15,7 @@ const NavLinks = ({ styleClass, isAuthenticated, isAdmin }) => {
       <NavLink url="/blogs" linkText="Blogs" className={styleClass} />
       {isAuthenticated && isAdmin && (
         <NavLink
-          url="/createPost"
+          url="/create-post"
           linkText="Create Post"
           className={styleClass}
         />

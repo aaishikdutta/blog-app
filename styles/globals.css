@@ -13,7 +13,16 @@
     @apply max-w-[1440px] mx-auto;
   }
   .link {
-    @apply cursor-pointer no-underline uppercase text-black;
+    @apply cursor-pointer no-underline uppercase text-white;
+  }
+  .default-transition {
+    @apply transition-all duration-500 ease-in-out;
+  }
+  .default-shadow {
+    @apply shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)];
+  }
+  .default-background {
+    background-image: linear-gradient(to right top, #303030, #343b46, #284a59, #085a62, #00695c);
   }
   .blog-wrapper:nth-child(odd) .blog-content {
     @apply order-2;
@@ -29,7 +38,7 @@
   }
 
   button, .router-button {
-    @apply transition-all duration-500 ease-in-out cursor-pointer mt-[24px] py-[12px] px-[24px] bg-[#303030] text-white rounded-[20px] border-none uppercase focus:outline-none hover:bg-[rgba(48,48,48,0.7)];
+    @apply transition-all duration-500 ease-in-out cursor-pointer mt-[24px] py-[12px] px-[24px] bg-white text-[#303030] rounded-[20px] border-none uppercase focus:outline-none;
   }
 
   .error {
@@ -40,8 +49,14 @@
     @apply flex flex-col h-full overflow-scroll;
   }
 
+  .textEditor .ql-toolbar {
+    @apply bg-white;
+  }
   .textEditor .ql-editor {
-    @apply p-[20px_16px_30px];
+    @apply p-[20px_16px_30px] bg-black text-white;
+  }
+  .textEditor .ql-editor.ql-blank::before {
+    @apply text-white;
   }
   .textEditor button {
     @apply mt-0;
