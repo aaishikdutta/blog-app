@@ -2,10 +2,11 @@ const postReducer = (state, action) => {
   switch (action.type) {
     case "SET_COVER_PHOTO": {
       const newState = { ...state };
-      const { fileName, fileURL } = action.payload;
+      const { fileName, fileURL, file } = action.payload;
 
       newState.blogPhotoName = fileName;
       newState.blogPhotoFileURL = fileURL;
+      newState.blogPhotoFile = file;
       console.log(newState);
       return newState;
     }

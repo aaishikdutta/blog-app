@@ -18,6 +18,7 @@ const FileUpload = ({ buttonStyle }) => {
       payload: {
         fileName,
         fileURL,
+        file,
       },
     });
   };
