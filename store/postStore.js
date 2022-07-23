@@ -3,4 +3,5 @@ export default {
     blogTitle: "",
     blogPhotoName: "",
     blogPhotoFileURL: null,
+    blogPhotoFile: null,
 }

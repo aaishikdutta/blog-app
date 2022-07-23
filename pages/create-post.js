@@ -4,11 +4,15 @@ import Editor from "../components/Editor/Editor";
 import AppLayout from "../layouts/AppLayout";
 import StandardLayout from "../layouts/StandardLayout";
 import FileUpload from "../components/FileUpload/FileUpload";
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import PostContext from "../context/postContext";
+import { downloadFromStorage, saveToCloudStorage } from "../utils/cloudStorage";
+import AuthContext from "../context/authContext";
+import { addPost } from "../utils/firestore";
 
 const CreatePost = () => {
   const { postState, postDispatch } = useContext(PostContext);
+  const { authState } = useContext(AuthContext);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -19,6 +23,30 @@ const CreatePost = () => {
     })
   };
 
+  const uploadHandler = async () => {
+    if(!postState.blogTitle || !postState.blogHTML){
+      setErrorMessage('Please ensure post title and post content is not empty');
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 5000);
+      return;
+    }
+    if(!postState.blogPhotoFile){
+      setErrorMessage('Please ensure post cover photo is not empty');
+      setError(true);
+      return;
+    }
+    //upload the cover first
+    const filePath = `documents/blogCoverPhotos/${postState.blogPhotoName}`;
+    await saveToCloudStorage(postState.blogPhotoFile, filePath);
+
+    const downloadUrl = await downloadFromStorage(filePath);
+    const timeStamp = Date.now();
+    const docRef = await addPost(postState.blogHTML, downloadUrl, postState.blogPhotoName, postState.blogTitle, authState.profileId, timeStamp);
+    console.log(docRef.id);
+  }
+
   const buttonStyle =
     "self-center text-[14px] cursor-pointer rounded-[20px] py-[12px] px-[24px] text-[#ffffff] bg-[#303030] no-underline hover:bg-[rgba(48,48,48,0.7)] transition-all duration-500 ease-in-out uppercase";
   return (
@@ -26,7 +54,7 @@ const CreatePost = () => {
       <div className="container relative h-full p-[10px_25px_60px]">
         <div className={`${error ? 'opacity-1' : 'opacity-0'} w-full p-[12px] rounded-[8px] text-white mb-[10px] bg-[#303030] transition-all duration-500ms ease`}>
           <p className="text-[14px]">
-            <span className="font-semibold">Error:</span>{errorMessage}
+            <span className="font-semibold">Error: </span>{errorMessage}
           </p>
         </div>
         <div className="flex mb-[32px]">
@@ -44,7 +72,7 @@ const CreatePost = () => {
           <Editor />
         </div>
         <div className="mt-[32px] flex">
-          <button className={classNames([buttonStyle, "mt-0 mr-[16px]"])}>
+          <button className={classNames([buttonStyle, "mt-0 mr-[16px]"])} onClick={uploadHandler}>
             Publish Blog
           </button>
           <Link href="/preview-post">
