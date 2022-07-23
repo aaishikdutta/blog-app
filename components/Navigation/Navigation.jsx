@@ -5,6 +5,7 @@ import AuthContext from "../../context/authContext";
 import NavLinks from "../helpers/NavLink";
 import classNames from "classnames";
 import ProfileMenu from "../helpers/ProfileMenu";
+import Close from '../../assets/close.svg';
 
 const Navigation = () => {
   const [isSideBar, setIsSideBar] = useState(false);
@@ -16,7 +17,7 @@ const Navigation = () => {
   },[authState]);
 
   const headerNavLinkStyle =
-    "link font-medium py-[8px] transition-colors duration-300 ease-in-out hover:text-orange-500";
+    "link font-medium py-[8px] default-transition hover:text-teal-500";
   const headerNavLinkDesktopStyle = classNames([
     headerNavLinkStyle,
     "mr-[32px] last:mr-0",
@@ -26,11 +27,11 @@ const Navigation = () => {
     "py-[15px] text-white",
   ]);
   return (
-    <header className="bg-white px-[25px] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] z-[99]">
+    <header className="bg-[#303030] px-[25px] z-[99] default-shadow">
       <nav className="container flex py-[25px]">
         <div className="flex items-center">
           <Link href="/">
-            <a className="font-semibold text-[24px] text-black no-underline">
+            <a className="font-semibold text-[24px] text-white no-underline">
               <span>Penned</span>
               <span className="text-[12px] uppercase tracking-[-1px]">
                 by aaishik
@@ -61,18 +62,19 @@ const Navigation = () => {
         )}
       </nav>
       <MenuIcon
-        className="cursor-pointer absolute top-[32px] right-[25px] h-[25px] w-auto md:hidden"
+        className="cursor-pointer absolute top-[32px] right-[25px] h-[25px] w-auto md:hidden text-white"
         onClick={() => {
-          setIsSideBar(!isSideBar);
+          setIsSideBar(true);
         }}
       />
       {isSideBar && (
-        <ul className="p-[20px] w-[70%] max-w-[250px] flex flex-col fixed h-full bg-[#303030] top-0 left-0 md:hidden">
-          <NavLinks
+        <ul className="p-[20px] w-[70%] max-w-[250px] flex flex-col fixed h-full bg-black top-0 right-0 md:hidden">
+          <Close className="w-[24px] h-auto cursor-pointer text-[24px] absolute top-[15px] right-[15px] text-white" onClick={() => setIsSideBar(false)} />
+          {!isNavLinkLoading && <NavLinks
             styleClass={headerNavLinkMobileStyle}
             isAuthenticated={authState.user}
             isAdmin={authState.profileAdmin}
-          />
+          />}
         </ul>
       )}
     </header>

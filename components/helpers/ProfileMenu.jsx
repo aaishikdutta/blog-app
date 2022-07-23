@@ -28,14 +28,14 @@ const ProfileMenu = ({
     });
   };
   return (
-    <div
-      ref={profileRef}
-      onClick={profileMenuToggleHandler}
-      className="relative cursor-pointer flex items-center justify-center w-[40px] h-[40px] rounded-[50%] text-white bg-[#303030] mr-[40px] md:mr-0"
-    >
-      <span className="pointer-events-none">{profileInitials}</span>
+      <div
+        ref={profileRef}
+        onClick={profileMenuToggleHandler}
+        className="relative cursor-pointer flex items-center justify-center w-[40px] h-[40px] rounded-[50%] text-black bg-[white] mr-[40px] md:mr-0 hover:bg-teal-200 default-transition"
+      >
+        <span className="pointer-events-none">{profileInitials}</span>
       {isProfileMenu && (
-        <div className="absolute top-[60px] right-[0] min-w-[250px] bg-[#303030] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)]">
+        <div className="absolute top-[60px] right-[0] min-w-[250px] bg-[#404040] default-shadow rounded-[4px] text-white">
           <div className="flex items-center p-[15px] border-b border-solid border-b-white">
             <span className="w-[40px] h-[40px] bg-white text-[#303030] flex items-center justify-center rounded-[50%]">
               {profileInitials}
@@ -57,14 +57,16 @@ const ProfileMenu = ({
                 </a>
               </Link>
             </div>
-            {isAdmin && <div className="no-underline text-white flex items-center mb-[12px]">
-              <Link href="/admin">
-                <a className="no-underline text-white flex items-center mb-[12px]">
-                  <Admin className="w-[18px] h-auto" />
-                  <p className="text-[14px] ml-[12px]">Admin</p>
-                </a>
-              </Link>
-            </div>}
+            {isAdmin && (
+              <div className="no-underline text-white flex items-center mb-[12px]">
+                <Link href="/admin">
+                  <a className="no-underline text-white flex items-center mb-[12px]">
+                    <Admin className="w-[18px] h-auto" />
+                    <p className="text-[14px] ml-[12px]">Admin</p>
+                  </a>
+                </Link>
+              </div>
+            )}
             <div
               className="no-underline text-white flex items-center"
               onClick={logoutHandler}

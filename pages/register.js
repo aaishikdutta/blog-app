@@ -95,7 +95,7 @@ const Register = () => {
         goToFormLinkText="Login"
       />
       <FormTitle
-        titleText="Create your Penned accoubt"
+        titleText="Create your Penned account"
         titleClasses="mb-[40px] max-w-[350px]"
       />
       <FormInputs inputs={registerInputs}>

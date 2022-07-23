@@ -7,7 +7,7 @@ import "quill/dist/quill.snow.css";
 const PreviewPost = () => {
     const {postState} = useContext(PostContext);
     return (
-        <div className="min-h-full">
+        <div className="min-h-full default-background flex-grow text-white">
             <div className="container quillWrapper max-w-[1000px] py-[60px] px-[25px]">
                 <h2 className="mb-[16px] font-light text-[32px]">{postState.blogTitle}</h2>
                 <img src={postState.blogPhotoFileURL} className="w-full mb-[32px]" />
