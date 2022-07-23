@@ -66,7 +66,7 @@ const Login = () => {
         {errorState && <div className="error">{errorMessage}</div>}
       </FormInputs>
       <Link href="/forgot-password">
-        <a className="no-underline text-black cursor-pointer text-[14px] m-[16px_0_32px] border-b-[1px] border-solid border-transparent transition-colors duration-500 ease-in-out hover:border-[#303030]">
+        <a className="no-underline text-white cursor-pointer text-[14px] m-[16px_0_32px] border-b-[1px] border-solid border-transparent transition-colors duration-500 ease-in-out hover:border-[#303030]">
           Forgot your Password?
         </a>
       </Link>
