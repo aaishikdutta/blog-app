@@ -8,10 +8,7 @@ import AuthContext from "../../context/authContext";
 
 const Footer = () => {
   const {authState} = useContext(AuthContext);
-  const [isNavLinkLoading, setIsNavLinkLoading] = useState(true);
-  useEffect(() => {
-    !authState.isAuthLoading && setIsNavLinkLoading(false);
-  },[authState]);
+
   const footerLinkStyle = 'link text-[16px] font-medium text-white no-underline';
   return (
     <footer className="mt-auto pt-[75px] pb-[50px] px-[25px] bg-[#303030]">
@@ -32,7 +29,7 @@ const Footer = () => {
           </div>
           <div className="gap-[32px] flex flex-1 md:gap-0">
             <ul className="gap-[16px] list-none flex h-full justify-center flex-row flex-wrap md:flex-col">
-            {!isNavLinkLoading && <NavLinks styleClass={footerLinkStyle} isAuthenticated={authState.user} isAdmin={authState.profileAdmin} />}
+            <NavLinks styleClass={footerLinkStyle} isAuthenticated={authState.user} isAdmin={authState.profileAdmin} />
             </ul>
           </div>
         </div>
